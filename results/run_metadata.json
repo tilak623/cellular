@@ -1,0 +1,76 @@
+{
+  "created_at": "2026-10-21T20:00:08",
+  "target": "M1",
+  "train_ratio": 0.8,
+  "seed": 42,
+  "n_train": 7008,
+  "n_test": 1752,
+  "test_start": "2024-10-19 00:00:00",
+  "test_end": "2024-12-30 23:00:00",
+  "libraries": {
+    "python": "3.13.7",
+    "numpy": "2.4.4",
+    "pandas": "3.0.2",
+    "sklearn": "1.8.0",
+    "statsmodels": "0.15.0",
+    "xgboost": "3.4.1",
+    "torch": "2.14.1+cpu"
+  },
+  "models": {
+    "SARIMA": {
+      "hyperparameters": {
+        "order": [
+          1,
+          0,
+          1
+        ],
+        "seasonal_order": [
+          1,
+          1,
+          1,
+          24
+        ],
+        "maxiter": 50
+      },
+      "artifacts": [
+        "exports\\sarima_params.json",
+        "exports\\sarima_model.pkl"
+      ]
+    },
+    "XGBoost": {
+      "hyperparameters": {
+        "n_estimators": 1000,
+        "learning_rate": 0.05,
+        "max_depth": 6,
+        "subsample": 0.8,
+        "colsample_bytree": 0.8,
+        "objective": "reg:squarederror",
+        "tree_method": "hist",
+        "early_stopping_rounds": 50,
+        "random_state": 42,
+        "best_iteration": 96
+      },
+      "artifacts": [
+        "exports\\xgboost_model.json"
+      ]
+    },
+    "LSTM": {
+      "hyperparameters": {
+        "hidden_size": 64,
+        "num_layers": 2,
+        "dropout": 0.2,
+        "window": 24,
+        "batch_size": 64,
+        "learning_rate": 0.001,
+        "max_epochs": 60,
+        "epochs_run": 31,
+        "patience": 8,
+        "best_val_mse_scaled": 0.00420350581407547
+      },
+      "artifacts": [
+        "exports\\lstm_model.pt",
+        "exports\\lstm_scaler.joblib"
+      ]
+    }
+  }
+}
